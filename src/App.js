@@ -91,7 +91,7 @@ function App() {
       const userId = `user-${Math.random().toString(36).substring(2, 8)}`;
 
       // 2. (Optional) Fixed room, or generate room dynamically if needed
-      const roomId = 'livekit-demo-room'; // or generate your own: `room-${someUniqueId}`
+      const roomId = `room-${Math.random().toString(36).substring(2, 8)}`; // or generate your own: `room-${someUniqueId}`
 
       // 3. Build final URL dynamically
       const fullUrl = `${server_url}room=${roomId}&user=${userId}`;

@@ -84,11 +84,21 @@ function App() {
   const connectToRoom = async () => {
     try {
       // const resp = await fetch(process.env.TOKEN_SERVER_URL);
-      const server_url = process.env.REACT_APP_TOKEN_SERVER_URL
-      console.log("Server url")
-      console.log(server_url)
-      const resp = await fetch(server_url);
-      console.log(resp)
+      const server_url = process.env.REACT_APP_TOKEN_SERVER_URL;
+      console.log("Server url:", server_url);
+
+      // 1. Dynamically generate a unique user ID
+      const userId = `user-${Math.random().toString(36).substring(2, 8)}`;
+
+      // 2. (Optional) Fixed room, or generate room dynamically if needed
+      const roomId = 'livekit-demo-room'; // or generate your own: `room-${someUniqueId}`
+
+      // 3. Build final URL dynamically
+      const fullUrl = `${server_url}room=${roomId}&user=${userId}`;
+      console.log("Final URL:", fullUrl);
+
+      // 4. Fetch the token
+      const resp = await fetch(fullUrl);
       const data = await resp.json();
       const token = data.token;
 

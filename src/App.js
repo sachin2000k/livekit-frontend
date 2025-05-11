@@ -129,7 +129,7 @@ function App() {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '5%' }}>
-      <h1>Voice AI Agent Interaction</h1>
+      <h1>AI Agent Interaction</h1>
 
       {!connected ? (
         <button onClick={connectToRoom} style={{ padding: '10px 20px', fontSize: '18px' }}>

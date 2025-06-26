@@ -1,38 +1,404 @@
-.App {
-  text-align: center;
+/* App.css */
+:root {
+  --primary-blue: #1a237e;
+  --secondary-blue: #303f9f;
+  --accent-yellow: #ffc107;
+  --call-green: #4CAF50;
+  --end-call-red: #f44336;
+  --text-white: #ffffff;
+  --text-gray: #b0bec5;
+  --background-dark: #0a0a0a;
+  --phone-bg: linear-gradient(135deg, #1a237e 0%, #303f9f 100%);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--background-dark);
+  color: var(--text-white);
+  overflow: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 2rem;
+}
+
+.phone-mockup {
+  background-image: url('./assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 30px;
+  width: 380px;
+  height: 700px; /* Increased height to accommodate bot */
+  padding: 40px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.phone-mockup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Logo Section */
+.logo-container {
+  text-align: center;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.logo-subtitle {
+  font-size: 18px;
+  color: var(--text-gray);
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+/* Call Section - Fixed height to prevent layout shift */
+.call-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  flex: 1;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 200px; /* Fixed height to prevent shifting */
+}
+
+.call-button-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.call-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background: transparent;
+  padding: 0;
+}
+
+.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.call-button:active {
+  transform: scale(0.95);
+}
+
+.call-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.call-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.start-call .call-icon {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.end-call .call-icon {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.call-icon svg {
+  width: 32px;
+  height: 32px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Loading Animation */
+.loading-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 3px solid transparent;
+  border-top: 3px solid var(--accent-yellow);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.button-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-white);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Speaking Indicator */
+.speaking-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--call-green);
+  font-weight: 500;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--call-green);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
   }
+}
+
+/* Chat Placeholder - Fixed height container to prevent layout shift */
+.chat-placeholder {
+  width: 100%;
+  min-height: 200px; /* Fixed height container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* Chat Container */
+.chat-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  max-height: 180px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.chat-messages {
+  max-height: 120px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.chat-message {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.sender {
+  font-weight: 600;
+  color: var(--accent-yellow);
+}
+
+.no-messages {
+  text-align: center;
+  color: var(--text-gray);
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* Bot Container - Repositioned and properly sized */
+.bot-container {
+  z-index: 2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  padding-left: 10px;
+  margin-bottom: 30px; /* More space from bottom */
+  position: relative;
+}
+
+.bot-image {
+  width: 170px; /* Increased size for better visibility */
+  height: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.bot-image:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Design - Mobile Full Screen */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0; /* Remove padding completely on mobile */
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .phone-mockup {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    border-radius: 0; /* Remove border radius for full screen */
+    padding: 30px 20px 20px 20px;
+    box-shadow: none; /* Remove shadow for seamless full screen */
+  }
+  
+  .logo {
+    width: 120px; /* Slightly smaller logo on mobile */
+  }
+  
+  .logo-subtitle {
+    font-size: 14px;
+  }
+  
+  .call-button {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .call-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .bot-image {
+    width: 200px; /* Larger bot image on mobile as requested */
+  }
+  
+  .bot-container {
+    padding-left: 15px;
+    margin-bottom: 20px; /* Ensure proper spacing from bottom */
+  }
+  
+  /* Ensure proper spacing on mobile */
+  .call-section {
+    min-height: 150px; /* Reduced height on mobile */
+  }
+  
+  .chat-placeholder {
+    min-height: 150px; /* Reduced height on mobile */
+  }
+  
+  .logo-container {
+    margin-top: 30px; /* More top margin since we removed container padding */
+  }
+  
+  /* Adjust chat container for mobile */
+  .chat-container {
+    max-height: 140px; /* Slightly smaller to fit mobile screen better */
+  }
+  
+  .chat-messages {
+    max-height: 100px;
+  }
+  
+  /* Ensure text remains readable on mobile */
+  .button-label {
+    font-size: 12px;
+  }
+  
+  .speaking-indicator {
+    font-size: 12px;
+  }
+}
+
+/* Additional animations for enhanced UX */
+.call-button.connecting .call-icon {
+  animation: buttonPulse 2s infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Smooth transitions for state changes */
+.phone-mockup > * {
+  transition: all 0.3s ease;
+}
+
+/* Glass morphism effect for modern look */
+.chat-container, .avatar-circle {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }

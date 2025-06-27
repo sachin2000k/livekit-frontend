@@ -1,0 +1,191 @@
+.phone-call-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+  /* Add this temporary style to verify CSS loading */
+  border: 5px solid red;
+}
+
+.phone-mockup {
+  width: 400px; /* Increased from 300px */
+  height: 800px; /* Increased from 600px */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow-y: auto; /* Added scroll for content */
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.logo-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.call-section {
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto;
+}
+
+.call-button {
+  width: 80%;
+  height: 50px;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin: 1rem 0;
+  
+  /* Default state - Start Call */
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.call-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.call-button.active {
+  /* Active state - End Call */
+  background-color: #f44336;
+  color: white;
+  box-shadow: 0 2px 4px rgba(244, 67, 54, 0.2);
+}
+
+.call-button.connecting {
+  background-color: #ff9800;
+  cursor: not-allowed;
+}
+
+.call-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.speaking-indicator {
+  margin-top: 1rem;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.chat-placeholder {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: #f4f4f4;
+}
+
+.chat-message {
+  margin-bottom: 0.5rem;
+}
+
+.sender {
+  font-weight: bold;
+}
+
+.bot-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.bot-image {
+  width: 60px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.form-container {
+  width: 100%;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.form-section {
+  background: #f8f9fa;
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 1rem;
+}
+
+.form-section h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.form-section input,
+.form-section textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-section input:focus,
+.form-section textarea:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.form-section textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-section input:disabled,
+.form-section textarea:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
